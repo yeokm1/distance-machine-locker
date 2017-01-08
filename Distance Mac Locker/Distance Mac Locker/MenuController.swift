@@ -223,6 +223,10 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         if distanceSensor != nil && distanceSensor!.portName.isEqual(portName){
             
             showAppNotification(subtitle: "Error in connection with " + portName, informativeText: errorMessage)
+            
+            if lockingMode{
+                locking.lockMachine()
+            }
             disconnectExistingConnection(sendNotification: false)
         }
         
