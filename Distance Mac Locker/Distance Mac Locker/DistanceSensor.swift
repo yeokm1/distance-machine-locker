@@ -55,8 +55,11 @@ class DistanceSensor: NSObject {
             let filemgr = FileManager.default
             
             do {
-                try filemgr.removeItem(atPath: TEMP_FULLPATH_ARDUINO_HEX)
                 
+                if filemgr.fileExists(atPath: TEMP_FULLPATH_ARDUINO_HEX){
+                    try filemgr.removeItem(atPath: TEMP_FULLPATH_ARDUINO_HEX)
+                }
+
                 try filemgr.copyItem(atPath: internalFilePath, toPath: TEMP_FULLPATH_ARDUINO_HEX)
                 print("Copy successful")
                 
