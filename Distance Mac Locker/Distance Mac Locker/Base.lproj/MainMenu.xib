@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Distance_Mac_Locker" customModuleProvider="target"/>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <menu id="h3i-7a-rRT">
+            <items>
+                <menuItem title="Locking Distance (cm)" id="g4j-Lf-FZl">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Locking Distance (cm)" id="Tah-TD-4Cd"/>
+                </menuItem>
+                <menuItem title="Sensor Serial Port" id="IaX-c5-6WT">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Sensor Serial Port" id="Abr-cJ-t9u"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="bsC-a4-tIe"/>
+                <menuItem title="Locking Mode: On" id="qxd-XS-4Xc">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="lockingModeItemClicked:" target="EKv-Ew-Oo2" id="46H-1W-uW4"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Connect on Start: On" id="VVa-dL-UMt">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="connectOnStartClicked:" target="EKv-Ew-Oo2" id="kmp-dj-AvH"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Flash before Connect: On" id="Xje-hS-BQU">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="flashBeforeConnectClicked:" target="EKv-Ew-Oo2" id="IYu-yq-qid"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="9TR-UC-UvR"/>
+                <menuItem title="Source URL" id="ses-w8-RE0">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="sourceURLClicked:" target="EKv-Ew-Oo2" id="5we-Oh-nFl"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="By: Yeo Kheng Meng" enabled="NO" id="EQI-DJ-mzE">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Version" enabled="NO" id="vvU-Ae-bT4">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="Quit" id="LpP-9i-Thb">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quitClicked:" target="EKv-Ew-Oo2" id="Ak9-ZI-9h9"/>
+                    </connections>
+                </menuItem>
+            </items>
+        </menu>
+        <customObject id="EKv-Ew-Oo2" customClass="MenuController" customModule="Distance_Mac_Locker" customModuleProvider="target">
+            <connections>
+                <outlet property="connectOnStartItem" destination="VVa-dL-UMt" id="Cwc-7O-JlB"/>
+                <outlet property="distanceMenu" destination="Tah-TD-4Cd" id="acR-Ju-nrD"/>
+                <outlet property="flashBeforeConnectItem" destination="Xje-hS-BQU" id="vsI-Jf-W6d"/>
+                <outlet property="lockingModeItem" destination="qxd-XS-4Xc" id="ChQ-WL-JB8"/>
+                <outlet property="serialPortMenu" destination="Abr-cJ-t9u" id="ssb-du-3mN"/>
+                <outlet property="statusMenu" destination="h3i-7a-rRT" id="x8g-WS-0es"/>
+                <outlet property="versionItem" destination="vvU-Ae-bT4" id="GHW-ff-gGy"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>

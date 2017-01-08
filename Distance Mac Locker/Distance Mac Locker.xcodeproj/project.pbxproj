@@ -1,0 +1,316 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		533A2B041E20D75000932FC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A2B031E20D75000932FC4 /* AppDelegate.swift */; };
+		533A2B061E20D75000932FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 533A2B051E20D75000932FC4 /* Assets.xcassets */; };
+		533A2B091E20D75000932FC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533A2B071E20D75000932FC4 /* MainMenu.xib */; };
+		533A2B111E20D7BE00932FC4 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A2B101E20D7BE00932FC4 /* MenuController.swift */; };
+		533A2B131E20D92000932FC4 /* SwiftSerial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A2B121E20D92000932FC4 /* SwiftSerial.swift */; };
+		533A2B151E20D9BD00932FC4 /* DistanceSensor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A2B141E20D9BD00932FC4 /* DistanceSensor.swift */; };
+		533A2B171E20DDDC00932FC4 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A2B161E20DDDC00932FC4 /* UtilityFunctions.swift */; };
+		534163391E2141150066FF82 /* Locking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 534163381E2141150066FF82 /* Locking.swift */; };
+		53A897B41E225FFE00F526C9 /* distance-machine-locker-arduino.hex in Resources */ = {isa = PBXBuildFile; fileRef = 53A897B21E2241A200F526C9 /* distance-machine-locker-arduino.hex */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		533A2B001E20D75000932FC4 /* Distance Mac Locker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Distance Mac Locker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		533A2B031E20D75000932FC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		533A2B051E20D75000932FC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		533A2B081E20D75000932FC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		533A2B0A1E20D75000932FC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		533A2B101E20D7BE00932FC4 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		533A2B121E20D92000932FC4 /* SwiftSerial.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftSerial.swift; sourceTree = "<group>"; };
+		533A2B141E20D9BD00932FC4 /* DistanceSensor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceSensor.swift; sourceTree = "<group>"; };
+		533A2B161E20DDDC00932FC4 /* UtilityFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
+		534163381E2141150066FF82 /* Locking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locking.swift; sourceTree = "<group>"; };
+		53A897B21E2241A200F526C9 /* distance-machine-locker-arduino.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "distance-machine-locker-arduino.hex"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		533A2AFD1E20D75000932FC4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		533A2AF71E20D74F00932FC4 = {
+			isa = PBXGroup;
+			children = (
+				533A2B021E20D75000932FC4 /* Distance Mac Locker */,
+				533A2B011E20D75000932FC4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		533A2B011E20D75000932FC4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				533A2B001E20D75000932FC4 /* Distance Mac Locker.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		533A2B021E20D75000932FC4 /* Distance Mac Locker */ = {
+			isa = PBXGroup;
+			children = (
+				533A2B031E20D75000932FC4 /* AppDelegate.swift */,
+				533A2B051E20D75000932FC4 /* Assets.xcassets */,
+				533A2B071E20D75000932FC4 /* MainMenu.xib */,
+				533A2B0A1E20D75000932FC4 /* Info.plist */,
+				533A2B101E20D7BE00932FC4 /* MenuController.swift */,
+				533A2B121E20D92000932FC4 /* SwiftSerial.swift */,
+				533A2B141E20D9BD00932FC4 /* DistanceSensor.swift */,
+				533A2B161E20DDDC00932FC4 /* UtilityFunctions.swift */,
+				534163381E2141150066FF82 /* Locking.swift */,
+				53A897B21E2241A200F526C9 /* distance-machine-locker-arduino.hex */,
+			);
+			path = "Distance Mac Locker";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		533A2AFF1E20D75000932FC4 /* Distance Mac Locker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 533A2B0D1E20D75000932FC4 /* Build configuration list for PBXNativeTarget "Distance Mac Locker" */;
+			buildPhases = (
+				533A2AFC1E20D75000932FC4 /* Sources */,
+				533A2AFD1E20D75000932FC4 /* Frameworks */,
+				533A2AFE1E20D75000932FC4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Distance Mac Locker";
+			productName = "Distance Mac Locker";
+			productReference = 533A2B001E20D75000932FC4 /* Distance Mac Locker.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		533A2AF81E20D74F00932FC4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Yeo Kheng Meng";
+				TargetAttributes = {
+					533A2AFF1E20D75000932FC4 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 533A2AFB1E20D74F00932FC4 /* Build configuration list for PBXProject "Distance Mac Locker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 533A2AF71E20D74F00932FC4;
+			productRefGroup = 533A2B011E20D75000932FC4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				533A2AFF1E20D75000932FC4 /* Distance Mac Locker */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		533A2AFE1E20D75000932FC4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53A897B41E225FFE00F526C9 /* distance-machine-locker-arduino.hex in Resources */,
+				533A2B061E20D75000932FC4 /* Assets.xcassets in Resources */,
+				533A2B091E20D75000932FC4 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		533A2AFC1E20D75000932FC4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				533A2B151E20D9BD00932FC4 /* DistanceSensor.swift in Sources */,
+				533A2B131E20D92000932FC4 /* SwiftSerial.swift in Sources */,
+				533A2B111E20D7BE00932FC4 /* MenuController.swift in Sources */,
+				533A2B171E20DDDC00932FC4 /* UtilityFunctions.swift in Sources */,
+				533A2B041E20D75000932FC4 /* AppDelegate.swift in Sources */,
+				534163391E2141150066FF82 /* Locking.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		533A2B071E20D75000932FC4 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				533A2B081E20D75000932FC4 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		533A2B0B1E20D75000932FC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		533A2B0C1E20D75000932FC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		533A2B0E1E20D75000932FC4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Distance Mac Locker/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yeokhengmeng.Distance-Mac-Locker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		533A2B0F1E20D75000932FC4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Distance Mac Locker/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yeokhengmeng.Distance-Mac-Locker";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		533A2AFB1E20D74F00932FC4 /* Build configuration list for PBXProject "Distance Mac Locker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				533A2B0B1E20D75000932FC4 /* Debug */,
+				533A2B0C1E20D75000932FC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		533A2B0D1E20D75000932FC4 /* Build configuration list for PBXNativeTarget "Distance Mac Locker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				533A2B0E1E20D75000932FC4 /* Debug */,
+				533A2B0F1E20D75000932FC4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 533A2AF81E20D74F00932FC4 /* Project object */;
+}
