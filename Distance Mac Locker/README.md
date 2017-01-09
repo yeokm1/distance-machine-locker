@@ -14,5 +14,6 @@ App is written in Swift and is considered a Menubar App as lives in the OSX menu
 
 4. If you have modified the Arduino code and regenerated the hex file, drag and drop the new hex file into the Xcode project before recompiling.
 
-## Libraries Used
+## Libraries and images used
 1. Serial Port communication with the Arduino is handled with my [SwiftSerial](https://github.com/yeokm1/SwiftSerial) library. I'm unsure how to use Swift Package Manager with Xcode so I just dropped the code of the entire library in.
+2. [Lock icon as app icon](https://www.iconfinder.com/icons/314694/lock_open_icon)
