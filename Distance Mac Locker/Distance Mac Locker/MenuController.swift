@@ -31,7 +31,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     let TEXT_FLASH_BEFORE_CONNECT_ON = "Flash before Connect: On"
     let TEXT_FLASH_BEFORE_CONNECT_OFF = "Flash before Connect: Off"
     
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var serialPortMenu: NSMenu!
@@ -306,7 +306,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     func distanceReceived(distance: Int){
         
         DispatchQueue.main.async {
-            self.statusItem.title = String(distance) + "cm"
+            self.statusItem.title = String(distance)
         }
 
         //print(distance)
