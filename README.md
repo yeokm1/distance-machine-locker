@@ -29,6 +29,19 @@ Back view of device. The OLED screen shows the current distance.
 6. Locks machine if device is disconnected
 7. Notifications to indicate flashing/connect/disconnect status
 
+## Rough steps to quick start
+
+1. Build the hardware, connect it to your Mac
+2. Download and install the Arduino app into `/Applications`
+2. Use Arduino app to flash firmware or flash from command line. Replace path to `distance-machine-locker-arduino.hex` and serial port `/dev/ttyusbmodemX` with the exact ones. `/Applications/Arduino.app/Contents/Java/hardware/tools/avr/bin/avrdude -C /Applications/Arduino.app/Contents/Java/hardware/tools/avr/etc/avrdude.conf -p atmega328p -b 115200 -c arduino -U flash:w:distance-machine-locker-arduino.hex:i -P /dev/ttyusbmodemX`
+3. Download from releases, Unzip and copy `Distance Mac Locker.app` into `/Applications`
+4. Start the app
+5. Connect to the associated USB Serial port
+6. Turn off locking mode and decide your threshold distance
+7. Set your threshold distance and turn locking mode back on
+8. Optionally turn on `Connect on Start` and `Flash before Connect`
+9. Make app start on login by. System Preferences -> Users and Groups -> Login Items -> + app into list
+
 ## Documentation
 
 Extra documentation is available in the readme files of the subdirectories.
