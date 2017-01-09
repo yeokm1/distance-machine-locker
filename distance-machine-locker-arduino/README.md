@@ -16,7 +16,7 @@ This is the code that runs on the Arduino Uno that measures the distance with a 
 
 6. Connect the Arduino setup, select `Arduino/Genuino Uno` as the board and you can upload the firmware.
 
-7. Since the host app has the option to reprogram the board, we should export the binary. Sketch -> Export compiled Binary. Save it as something like `distance-machine-locker-arduino.hex` so we can use it later.
+7. Since the host app has the option to reprogram the board, we should export the binary. Sketch -> Export compiled Binary. Choose the one without the bootloader and rename it as something like `distance-machine-locker-arduino.hex` so we can use it later.
 
 
 ## Included library
