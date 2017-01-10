@@ -11,7 +11,7 @@ Only Mac OS is supported at this time.
 Video of everything in action.
 
 ![Screen](images/deployed.jpg)
-My device deployed under my desk. The purple light is coming from the sharp IR sensor.
+My device deployed under my desk. The purple light coming from the sharp IR sensor cannot be seen with a naked eye but the camera can.
 
 ![Screen](images/front.jpg)
 Front view of device
