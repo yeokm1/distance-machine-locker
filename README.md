@@ -19,10 +19,10 @@ Front view of device
 ![Screen](images/back.jpg)
 Back view of device. The OLED screen shows the current distance.
 
-![Screen](images/app-distance-setting.png)
+![Screen](images/app-distance-setting.png)  
 Feature to customise the locking distance threshold.
 
-![Screen](images/app-usb-setting.png)
+![Screen](images/app-usb-setting.png)  
 Shows the currently connected USB Serial port as well as other ports if available.
 
 ## Features
