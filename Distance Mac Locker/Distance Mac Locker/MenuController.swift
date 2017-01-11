@@ -208,7 +208,12 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         let portName: String = item.title
         
         print("Serial port clicked: " + portName)
-        connectToThisPort(portName: portName)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.connectToThisPort(portName: portName)
+        }
+        
+
     }
     
     
@@ -261,6 +266,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
 
     }
     
+    //This function should be run from a seperate thread
     func connectToThisPort(portName : String){
         
         disconnectExistingConnection(sendNotification: true)
