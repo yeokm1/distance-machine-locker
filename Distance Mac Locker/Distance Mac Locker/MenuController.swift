@@ -233,7 +233,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                 locking.lockMachine()
                 
                 //Allow time for machine to lock before engaging the notification
-                sleep(1)
+                sleep(2)
             }
             
             showAppNotification(subtitle: "Error in connection with " + portName, informativeText: errorMessage)
