@@ -34,6 +34,7 @@ Shows the currently connected USB Serial port as well as other ports if availabl
 5. Choice to auto connect to device if only one sensor is found
 6. Locks machine if device is disconnected
 7. Notifications to indicate flashing/connect/disconnect status
+8. If locking mode is disabled for testing purposes, a red background is placed behind the distance text to alert the user of lack of security.
 
 ## Rough steps to quick start
 
