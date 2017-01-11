@@ -317,10 +317,22 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     func distanceReceived(distance: Int){
         
         DispatchQueue.main.async {
-            self.statusItem.title = String(distance)
-        }
+            
+            let distanceText = String(distance)
+            
+            
+            if self.lockingMode{
+                self.statusItem.title = distanceText
+            } else {
+                let attributedDistanceString = NSAttributedString(
+                    string: distanceText,
+                    attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: NSFont.systemFontSize()),NSBackgroundColorAttributeName: NSColor.red])
+                
+               self.statusItem.attributedTitle = attributedDistanceString
+ 
+            }
 
-        //print(distance)
+        }
         
         if lockingMode && distance >= currentLockingDistance {
             locking.lockMachine()
