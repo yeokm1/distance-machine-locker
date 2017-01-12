@@ -42,12 +42,13 @@ Shows the currently connected USB Serial port as well as other ports if availabl
 2. Download and install the Arduino app into `/Applications`
 2. Use Arduino app to flash firmware or flash from command line. Replace path to `distance-machine-locker-arduino.hex` and serial port `/dev/ttyusbmodemX` with the exact ones. `/Applications/Arduino.app/Contents/Java/hardware/tools/avr/bin/avrdude -C /Applications/Arduino.app/Contents/Java/hardware/tools/avr/etc/avrdude.conf -p atmega328p -b 115200 -c arduino -U flash:w:distance-machine-locker-arduino.hex:i -P /dev/ttyusbmodemX`
 3. Download from releases, Unzip and copy `Distance Mac Locker.app` into `/Applications`
-4. Start the app
-5. Connect to the associated USB Serial port
-6. Turn off locking mode and decide your threshold distance
-7. Set your threshold distance and turn locking mode back on
-8. Optionally turn on `Connect on Start` and `Flash before Connect`
-9. Make app start on login by. System Preferences -> Users and Groups -> Login Items -> + app into list
+4. Lock the system immediately when screensaver is enabled or display sleeps. System Preferences -> Security and Privacy -> Require password "immediately"
+5. Start the app
+6. Connect to the associated USB Serial port
+7. Turn off locking mode and decide your threshold distance
+8. Set your threshold distance and turn locking mode back on
+9. Optionally turn on `Connect on Start` and `Flash before Connect`
+10. Make app start on login by. System Preferences -> Users and Groups -> Login Items -> + app into list
 
 ## Documentation
 
