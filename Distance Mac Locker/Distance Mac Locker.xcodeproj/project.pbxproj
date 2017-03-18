@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		53172BA71E7D0CB00027E4D0 /* USBWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53172BA61E7D0CB00027E4D0 /* USBWatcher.swift */; };
 		533A2B041E20D75000932FC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533A2B031E20D75000932FC4 /* AppDelegate.swift */; };
 		533A2B061E20D75000932FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 533A2B051E20D75000932FC4 /* Assets.xcassets */; };
 		533A2B091E20D75000932FC4 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 533A2B071E20D75000932FC4 /* MainMenu.xib */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		53172BA61E7D0CB00027E4D0 /* USBWatcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = USBWatcher.swift; sourceTree = "<group>"; };
 		533A2B001E20D75000932FC4 /* Distance Mac Locker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Distance Mac Locker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		533A2B031E20D75000932FC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		533A2B051E20D75000932FC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				533A2B161E20DDDC00932FC4 /* UtilityFunctions.swift */,
 				534163381E2141150066FF82 /* Locking.swift */,
 				53A897B21E2241A200F526C9 /* distance-machine-locker-arduino.hex */,
+				53172BA61E7D0CB00027E4D0 /* USBWatcher.swift */,
 			);
 			path = "Distance Mac Locker";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				533A2B111E20D7BE00932FC4 /* MenuController.swift in Sources */,
 				533A2B171E20DDDC00932FC4 /* UtilityFunctions.swift in Sources */,
 				533A2B041E20D75000932FC4 /* AppDelegate.swift in Sources */,
+				53172BA71E7D0CB00027E4D0 /* USBWatcher.swift in Sources */,
 				534163391E2141150066FF82 /* Locking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

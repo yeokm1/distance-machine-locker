@@ -14,7 +14,7 @@ let TEMP_PATH_HEX_TYPE = "hex"
 
 let TEMP_FULLPATH_ARDUINO_HEX = TEMP_PATHNAME_ARDUINO_HEX + "." + TEMP_PATH_HEX_TYPE
 
-class DistanceSensor: NSObject {
+class DistanceSensor: NSObject, USBWatcherDelegate {
     
     
     //Beyond this distance, the value is discarded
@@ -39,11 +39,16 @@ class DistanceSensor: NSObject {
     var distanceCallback: ((_ distance: Int) -> Void)?
     var portErrorCallback: ((_ errorMessage: String, _ portName: String)-> Void)?
     
+    var usbWatcher: USBWatcher!
+    
     public init(port : String){
         portName = port
         serialPort = SerialPort(path: portName)
         COMMAND_AVRDUDE_ARGS.append(portName)
-
+        
+        super.init()
+        
+        usbWatcher = USBWatcher(delegate: self)
     }
     
     
@@ -95,9 +100,6 @@ class DistanceSensor: NSObject {
                 self.backgroundReadPort()
             }
             
-            DispatchQueue.global(qos: .userInitiated).async {
-                self.backgroundCheckPortOpen()
-            }
             
         } catch PortError.failedToOpen {
             return (false, "Port failed to open")
@@ -143,24 +145,17 @@ class DistanceSensor: NSObject {
     }
     
     
-    //Check for existence of this ports
-    private func backgroundCheckPortOpen(){
+    public func deviceRemoved(_ device: io_object_t) {
+        let portNameOfDisconnected = getPortNameFromDevice(device)
+        print("Device removed: \(portNameOfDisconnected)")
         
-        while isReceiving{
+        if isReceiving && portName == portNameOfDisconnected{
+            isReceiving = false
             
-            sleep(1)
-            let availablePorts : [String] = getPossibleArduinoPorts()
-            
-            if !availablePorts.contains(portName){
-                
-                isReceiving = false
-                
-                if portErrorCallback != nil{
-                    portErrorCallback!("Port Disconnected", portName)
-                }
-                
+            if portErrorCallback != nil{
+                portErrorCallback!("Port Disconnected", portName)
             }
-
+            
         }
     }
     
