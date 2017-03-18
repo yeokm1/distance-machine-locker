@@ -12,6 +12,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     
     let DISTANCE_MINIMUM: Int = 10
     let DISTANCE_MAXIMUM: Int = 80
+    
+    let DELAY_BEFORE_NOTIFICATION_AFTER_LOCK: UInt32 = 2
 
     
     let MENU_TITLE_NOT_CONNECTED = "NC"
@@ -233,7 +235,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                 locking.lockMachine()
                 
                 //Allow time for machine to lock before engaging the notification
-                sleep(2)
+                sleep(DELAY_BEFORE_NOTIFICATION_AFTER_LOCK)
             }
             
             showAppNotification(subtitle: "Error in connection with " + portName, informativeText: errorMessage)
