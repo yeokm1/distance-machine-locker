@@ -13,7 +13,6 @@ import IOKit.serial
 let PATH_PREFIX_ARDUINO = "/dev/cu.usbmodem"
 
 
-
 //Referenced from:
 //https://www.mac-usb-serial.com/wordpress/detect-serial-devices-mac-os-x-using-swift/
 //http://stackoverflow.com/questions/25320213/searching-serial-ports-with-iokit-swift
@@ -33,22 +32,14 @@ func getPossibleArduinoPorts() -> [String]{
         var serialService: io_object_t
         repeat {
             serialService = IOIteratorNext(matchingServices)
-            if (serialService != 0) {
-                let key: CFString! = "IOCalloutDevice" as CFString!
-                let bsdPathAsCFtring: AnyObject? =
-                    IORegistryEntryCreateCFProperty(serialService, key, kCFAllocatorDefault, 0).takeUnretainedValue()
-                let bsdPath = bsdPathAsCFtring as! String?
-                if let path = bsdPath {
-                    if path.hasPrefix(PATH_PREFIX_ARDUINO){
-                        result.append(path)
-                    }
-                    
-     
-                }
+            
+            let path = getPortNameFromDevice(serialService)
+            
+            if path.hasPrefix(PATH_PREFIX_ARDUINO){
+                result.append(path)
             }
+            
         } while serialService != 0;
-        
-        
         
         // success
     } else {
@@ -56,6 +47,24 @@ func getPossibleArduinoPorts() -> [String]{
     }
     
     return result
+}
+
+func getPortNameFromDevice(_ device: io_object_t) -> String{
+    
+    if (device != 0) {
+        let key: CFString! = "IOCalloutDevice" as CFString!
+        let bsdPathAsCFtring: AnyObject? = IORegistryEntryCreateCFProperty(device, key, kCFAllocatorDefault, 0).takeUnretainedValue()
+        let bsdPath = bsdPathAsCFtring as! String?
+        
+        if let path = bsdPath {
+            return path
+        } else {
+            return ""
+        }
+    } else {
+        return ""
+    }
+    
 }
 
 
