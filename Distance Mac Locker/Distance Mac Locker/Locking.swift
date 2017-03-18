@@ -77,13 +77,13 @@ class Locking: NSObject {
     
     //Reference http://stackoverflow.com/questions/1976520/lock-screen-by-api-in-mac-os-x
     func actualLockCall(){
-        let r = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler")
+        print("Lock Call")
         
-        if (r > 0) {
-            IORegistryEntrySetCFProperty(r, "IORequestIdle" as CFString!, kCFBooleanTrue)
-            IOObjectRelease(r)
-        }
+        //Run command: /System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession -suspend
+        let lockCommand = "/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession"
+        let lockArgument = ["-suspend"]
         
+        _ = runCommand(cmd: lockCommand, args: lockArgument)
         
     }
 
