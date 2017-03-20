@@ -56,4 +56,4 @@ Extra documentation is available in the readme files of the subdirectories.
 
 1. [Hardware schematic and components](schematic/README.md)
 2. [Arduino Code](distance-machine-locker-arduino/README.md)
-3. [Swift Host Code](Distance Mac Locker/README.md)
+3. [Swift Host Code](Distance%20Mac%20Locker/README.md)
