@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
@@ -23,6 +23,9 @@
                 <menuItem title="Sensor Serial Port" id="IaX-c5-6WT">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Sensor Serial Port" id="Abr-cJ-t9u"/>
+                </menuItem>
+                <menuItem title="Auto-connect to: ---" enabled="NO" id="nKB-cq-30h">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="bsC-a4-tIe"/>
                 <menuItem title="Locking Mode: On" id="qxd-XS-4Xc">
@@ -66,6 +69,7 @@
         </menu>
         <customObject id="EKv-Ew-Oo2" customClass="MenuController" customModule="Distance_Mac_Locker" customModuleProvider="target">
             <connections>
+                <outlet property="autoConnectToItem" destination="nKB-cq-30h" id="fA2-UL-SN4"/>
                 <outlet property="connectOnStartItem" destination="VVa-dL-UMt" id="Cwc-7O-JlB"/>
                 <outlet property="distanceMenu" destination="Tah-TD-4Cd" id="acR-Ju-nrD"/>
                 <outlet property="flashBeforeConnectItem" destination="Xje-hS-BQU" id="vsI-Jf-W6d"/>

@@ -33,6 +33,9 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     let TEXT_FLASH_BEFORE_CONNECT_ON = "Flash before Connect: On"
     let TEXT_FLASH_BEFORE_CONNECT_OFF = "Flash before Connect: Off"
     
+    let TEXT_AUTO_CONNECT = "Auto-connect to: %@"
+    let TEXT_AUTO_CONNECT_NA = "Auto-connect to: ---"
+    
     let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     
     @IBOutlet weak var statusMenu: NSMenu!
@@ -42,6 +45,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     @IBOutlet weak var lockingModeItem: NSMenuItem!
     @IBOutlet weak var connectOnStartItem: NSMenuItem!
     @IBOutlet weak var flashBeforeConnectItem: NSMenuItem!
+    @IBOutlet weak var autoConnectToItem: NSMenuItem!
     
     var distanceSensor: DistanceSensor?
     
@@ -114,6 +118,17 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         } else {
             lockingModeItem.title = TEXT_LOCKING_MODE_OFF
         }
+    }
+    
+    func refreshAutoConnectText(){
+        DispatchQueue.global(qos: .userInitiated).async {
+            if self.lastConnectedPort == nil {
+                self.autoConnectToItem.title = self.TEXT_AUTO_CONNECT_NA
+            } else {
+                self.autoConnectToItem.title = String(format: self.TEXT_AUTO_CONNECT, self.lastConnectedPort!)
+            }
+        }
+
     }
     
     func setMenuTitleToNotConnected(){
@@ -226,6 +241,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         
         //This is a manual disconnect. We don't auto connect back when the device comes back into view
         lastConnectedPort = nil
+        refreshAutoConnectText()
+        
         disconnectExistingConnection(sendNotification: true)
     }
     
@@ -278,6 +295,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         
         //Remember the last connected port so we can auto connect later
         lastConnectedPort = portName
+        refreshAutoConnectText()
         
         disconnectExistingConnection(sendNotification: true)
         distanceSensor = DistanceSensor(port: portName)
