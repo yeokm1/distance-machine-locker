@@ -15,6 +15,10 @@ import IOKit.serial
 
 
 public protocol USBWatcherDelegate: class {
+    
+    /// Called on the main thread when a device is connected.
+    func deviceAdded(_ device: io_object_t)
+    
     /// Called on the main thread when a device is disconnected.
     func deviceRemoved(_ device: io_object_t)
 }
@@ -24,6 +28,7 @@ public protocol USBWatcherDelegate: class {
 public class USBWatcher {
     private weak var delegate: USBWatcherDelegate?
     private let notificationPort = IONotificationPortCreate(kIOMasterPortDefault)
+    private var addedIterator: io_iterator_t = 0
     private var removedIterator: io_iterator_t = 0
     
     public init(delegate: USBWatcherDelegate) {
@@ -33,6 +38,7 @@ public class USBWatcher {
             let watcher = Unmanaged<USBWatcher>.fromOpaque(instance!).takeUnretainedValue()
             let handler: ((io_iterator_t) -> Void)?
             switch iterator {
+            case watcher.addedIterator: handler = watcher.delegate?.deviceAdded
             case watcher.removedIterator: handler = watcher.delegate?.deviceRemoved
             default: assertionFailure("received unexpected IOIterator"); return
             }
@@ -59,6 +65,7 @@ public class USBWatcher {
     }
     
     deinit {
+        IOObjectRelease(addedIterator)
         IOObjectRelease(removedIterator)
         IONotificationPortDestroy(notificationPort)
     }

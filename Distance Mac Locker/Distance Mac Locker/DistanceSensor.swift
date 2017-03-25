@@ -15,7 +15,7 @@ let TEMP_PATH_HEX_TYPE = "hex"
 let TEMP_FULLPATH_ARDUINO_HEX = TEMP_PATHNAME_ARDUINO_HEX + "." + TEMP_PATH_HEX_TYPE
 
 class DistanceSensor: NSObject, USBWatcherDelegate {
-    
+   
     
     //Beyond this distance, the value is discarded
     //To guard against the case where the two numbers are read together in the serial port
@@ -142,6 +142,11 @@ class DistanceSensor: NSObject, USBWatcherDelegate {
             }
         }
 
+    }
+    
+    public func deviceAdded(_ device: io_object_t) {
+        let portNameOfAttached = getPortNameFromDevice(device)
+        print("Device added: \(portNameOfAttached)")
     }
     
     
