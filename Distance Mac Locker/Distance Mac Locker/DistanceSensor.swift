@@ -145,8 +145,7 @@ class DistanceSensor: NSObject, USBWatcherDelegate {
     }
     
     public func deviceAdded(_ device: io_object_t) {
-        let portNameOfAttached = getPortNameFromDevice(device)
-        print("Device added: \(portNameOfAttached)")
+        //Not implemented here
     }
     
     

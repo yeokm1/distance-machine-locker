@@ -15,7 +15,6 @@ import IOKit.serial
 
 
 public protocol USBWatcherDelegate: class {
-    
     /// Called on the main thread when a device is connected.
     func deviceAdded(_ device: io_object_t)
     
@@ -48,12 +47,20 @@ public class USBWatcher {
             }
         }
         
-        //Specific to serial device
         let query = IOServiceMatching(kIOSerialBSDServiceValue)
         let opaqueSelf = Unmanaged.passUnretained(self).toOpaque()
         
+        // Watch for connected devices.
+        IOServiceAddMatchingNotification(
+            notificationPort, kIOMatchedNotification, query,
+            handleNotification, opaqueSelf, &addedIterator)
+        
+        handleNotification(instance: opaqueSelf, addedIterator)
+        
         // Watch for disconnected devices.
-        IOServiceAddMatchingNotification(notificationPort, kIOTerminatedNotification, query, handleNotification, opaqueSelf, &removedIterator)
+        IOServiceAddMatchingNotification(
+            notificationPort, kIOTerminatedNotification, query,
+            handleNotification, opaqueSelf, &removedIterator)
         
         handleNotification(instance: opaqueSelf, removedIterator)
         
@@ -70,3 +77,5 @@ public class USBWatcher {
         IONotificationPortDestroy(notificationPort)
     }
 }
+
+

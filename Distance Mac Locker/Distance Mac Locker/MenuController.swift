@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNotificationCenterDelegate {
+class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNotificationCenterDelegate, USBWatcherDelegate {
     
     let DISTANCE_MINIMUM: Int = 10
     let DISTANCE_MAXIMUM: Int = 80
@@ -51,6 +51,9 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     var connectOnStart: Bool = false
     var flashBeforeConnect: Bool = false
     
+    var lastConnectedPort: String?
+    var usbWatcher: USBWatcher!
+    
     let locking: Locking = Locking()
     
     
@@ -76,7 +79,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         serialPortMenu.delegate = self
         distanceMenu.delegate = self
         
-        
+        usbWatcher = USBWatcher(delegate: self)
 
         if connectOnStart{
             DispatchQueue.global(qos: .userInitiated).async {
@@ -220,6 +223,9 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     
     
     func disconnectMenuItemClicked(item: NSMenuItem){
+        
+        //This is a manual disconnect. We don't auto connect back when the device comes back into view
+        lastConnectedPort = nil
         disconnectExistingConnection(sendNotification: true)
     }
     
@@ -242,7 +248,6 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
 
         }
         
-
     
     }
     
@@ -268,8 +273,11 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
 
     }
     
-    //This function should be run from a seperate thread
+    //This function should be run from a separate thread
     func connectToThisPort(portName : String){
+        
+        //Remember the last connected port so we can auto connect later
+        lastConnectedPort = portName
         
         disconnectExistingConnection(sendNotification: true)
         distanceSensor = DistanceSensor(port: portName)
@@ -418,6 +426,24 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         let defaults = UserDefaults.standard
         defaults.set(flashBeforeConnect, forKey: KEY_STORE_FLASH_BEFORE_CONNECT)
         
+    }
+    
+    
+    public func deviceAdded(_ device: io_object_t) {
+        let portNameOfAttached = getPortNameFromDevice(device)
+        print("Device added: \(portNameOfAttached)")
+        
+        if portNameOfAttached == lastConnectedPort {
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.connectToThisPort(portName: portNameOfAttached)
+            }
+        }
+
+    }
+    
+    
+    public func deviceRemoved(_ device: io_object_t) {
+        //Not implemented here
     }
     
     
