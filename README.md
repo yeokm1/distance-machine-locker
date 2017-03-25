@@ -1,6 +1,6 @@
 # Distance Machine Locker
 
-A system that locks your computer the moment you move away from it. An Arduino-based hardware senses how far are you away from the computer and reports it to a host app on your machine. When a set threshold has been reached, the machine is locked.
+A system that locks your computer the moment you move away from it. An Arduino-based hardware senses how far are you away from the computer and reports it to a host app on your machine. When a set threshold has been reached, the machine is locked. If the device is forcefully detached from the PC while the app is in operation, it will auto-reconnect back.
 
 Only Mac OS is supported at this time.
 
@@ -35,6 +35,7 @@ Shows the currently connected USB Serial port as well as other ports if availabl
 6. Locks machine if device is disconnected
 7. Notifications to indicate flashing/connect/disconnect status
 8. If locking mode is disabled for testing purposes, a red background is placed behind the distance text to alert the user of lack of security.
+9. Auto reconnect back to device if it was forcefully disconnected previously. Auto-reconnection does not happen if you manually disconnect using the menu.
 
 ## Rough steps to quick start
 
