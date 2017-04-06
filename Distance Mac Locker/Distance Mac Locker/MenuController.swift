@@ -204,7 +204,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         } else if(menu.isEqual(distanceMenu)){
             distanceMenu.removeAllItems()
             
-            for distance in DISTANCE_MINIMUM...DISTANCE_MAXIMUM {
+            for distance in stride(from: DISTANCE_MINIMUM, through: DISTANCE_MAXIMUM, by: 5) {
                 let distanceMenuItem = NSMenuItem(title: String(distance), action: #selector(distanceMenuItemClicked), keyEquivalent: "")
                 
                 distanceMenuItem.target = self
