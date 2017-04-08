@@ -41,6 +41,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var serialPortMenu: NSMenu!
     @IBOutlet weak var distanceMenu: NSMenu!
+    @IBOutlet weak var lockingTimeoutMenu: NSMenu!
     @IBOutlet weak var versionItem: NSMenuItem!
     @IBOutlet weak var lockingModeItem: NSMenuItem!
     @IBOutlet weak var connectOnStartItem: NSMenuItem!
@@ -50,6 +51,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     var distanceSensor: DistanceSensor?
     
     var currentLockingDistance: Int!
+    var currentLockingTimeout: Int!
     
     var lockingMode: Bool = true
     var connectOnStart: Bool = false
@@ -82,6 +84,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     
         serialPortMenu.delegate = self
         distanceMenu.delegate = self
+        lockingTimeoutMenu.delegate = self
         
         usbWatcher = USBWatcher(delegate: self)
 
@@ -217,10 +220,23 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                 distanceMenu.addItem(distanceMenuItem)
             }
             
+        } else if(menu.isEqual(lockingTimeoutMenu)) {
+            lockingTimeoutMenu.removeAllItems()
+            
+            for second in stride(from: 5, through: 15, by: 1) {
+                let timeoutMenuItem = NSMenuItem(title: String(second), action: #selector(timeoutMenuItemClicked), keyEquivalent: "")
+                timeoutMenuItem.target = self
+                
+                
+            lockingTimeoutMenu.addItem(timeoutMenuItem)
+            }
         }
 
     }
     
+    func timeoutMenuItemClicked(item: NSMenuItem) {
+        
+    }
 
     
 
