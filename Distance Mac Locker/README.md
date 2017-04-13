@@ -8,7 +8,7 @@ App is written in Swift and is considered a Menubar App as lives in the OSX menu
 
 1. Make sure you install the Arduino app into `/Applications` before you proceed
 
-2. Download and install the latest Xcode which is version 8.2.1 at the time of writing
+2. Download and install the latest Xcode which is version 8.3.1 at the time of writing
 
 3. Open `Distance Mac Locker.xcodeproj`
 
