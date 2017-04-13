@@ -51,7 +51,6 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     var distanceSensor: DistanceSensor?
     
     var currentLockingDistance: Int!
-    var currentLockingTimeout: Int!
     
     var lockingMode: Bool = true
     var connectOnStart: Bool = false
@@ -61,7 +60,9 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     var usbWatcher: USBWatcher!
     
     let locking: Locking = Locking()
-    var timeToLock: Int = 1
+    var lockingTimeout: Int = 1
+    var goingToLock: Bool = false
+    var launchLockWindow: CFAbsoluteTime!
     
     override func awakeFromNib() {
         
@@ -72,6 +73,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         versionItem.title = "Version: " + appVersionString
         
         currentLockingDistance = locking.getLockingDistance()
+        lockingTimeout = locking.getLockingTimeout()
+        
         connectOnStart = getConnectOnStart()
         flashBeforeConnect = getFlashBeforeConnect()
         
@@ -214,7 +217,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             for second in options {
                 let timeoutMenuItem = NSMenuItem(title: String(second), action: #selector(timeoutMenuItemClicked), keyEquivalent: "")
                 timeoutMenuItem.target = self
-                if second == String(self.timeToLock) {
+                if second == String(self.lockingTimeout) {
                     timeoutMenuItem.state = NSOnState
                 }
                 
@@ -226,7 +229,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     
     func timeoutMenuItemClicked(item: NSMenuItem) {
         if let timeout = Int(item.title) {
-            self.timeToLock = timeout
+            self.lockingTimeout = timeout
+            locking.setLockingWindowTimeout(newTimeout: timeout)
         }
     }
     
@@ -347,9 +351,6 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         
     }
     
-    var goingToLock: Bool = false
-    var launchLockWindow: CFAbsoluteTime!
-    
     func distanceReceived(distance: Int){
         DispatchQueue.main.async {
             let distanceText = String(distance)
@@ -364,23 +365,23 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             }
         }
         if lockingMode && distance >= currentLockingDistance {
-            if self.goingToLock == false {
-                self.goingToLock = true
-                startCounting(start: true)
+            if goingToLock == false {
+                goingToLock = true
+                startLockingWindow(start: true)
             } else {
-                startCounting(start: false)
+                startLockingWindow(start: false)
             }
         } else {
-            self.goingToLock = false
+            goingToLock = false
         }
     }
     
-    func startCounting(start: Bool) {
+    func startLockingWindow(start: Bool) {
         if start {
-            self.launchLockWindow = CFAbsoluteTimeGetCurrent()
+            launchLockWindow = CFAbsoluteTimeGetCurrent()
         } else {
-            let elapsed = CFAbsoluteTimeGetCurrent() - self.launchLockWindow
-            if elapsed >= Double(timeToLock) {
+            let elapsed = CFAbsoluteTimeGetCurrent() - launchLockWindow
+            if elapsed >= Double(lockingTimeout) {
                 locking.lockMachine()
             }
         }
