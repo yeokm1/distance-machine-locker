@@ -367,6 +367,10 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         if lockingMode && distance >= currentLockingDistance {
             if goingToLock == false {
                 goingToLock = true
+                // Showing Notification takes more than one second
+                if lockingTimeout > 1 {
+                    showAppNotification(subtitle: "Going away from your desk?", informativeText: "Locking in \(lockingTimeout) seconds")
+                }
                 startLockingWindow(start: true)
             } else {
                 startLockingWindow(start: false)
