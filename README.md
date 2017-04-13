@@ -36,6 +36,7 @@ Shows the currently connected USB Serial port as well as other ports if availabl
 7. Notifications to indicate flashing/connect/disconnect status
 8. If locking mode is disabled for testing purposes, a red background is placed behind the distance text to alert the user of lack of security.
 9. Auto reconnect back to device if it was forcefully disconnected previously. Auto-reconnection does not happen if you manually disconnect using the menu.
+10. Adjustable delay to avoid unnecessary locking if the user can come back into range within a time window.
 
 ## Rough steps to quick start
 
@@ -48,7 +49,7 @@ Shows the currently connected USB Serial port as well as other ports if availabl
 6. Connect to the associated USB Serial port
 7. Turn off locking mode and decide your threshold distance
 8. Set your threshold distance and turn locking mode back on
-9. Optionally turn on `Connect on Start` and `Flash before Connect`
+9. Optionally turn on `Connect on Start` and `Flash before Connect`. Configure locking delay if you want.
 10. Make app start on login by. System Preferences -> Users and Groups -> Login Items -> + app into list
 
 ## Documentation
