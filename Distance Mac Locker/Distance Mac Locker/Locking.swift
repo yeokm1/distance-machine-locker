@@ -14,7 +14,7 @@ class Locking: NSObject {
     let DEFAULT_LOCK_DISTANCE = 60
 
     let KEY_STORE_DISTANCE = "lockingDistance"
-    
+    let KEY_STORE_TIMEOUT = "lockingTimeout"
     let MINIMUM_LOCK_WINDOW = 5.0 //seconds
 
     var timeLockEngaged : Date = Date()
@@ -63,6 +63,19 @@ class Locking: NSObject {
         
     }
     
+    func setLockingWindowTimeout(newTimeout: Int){
+        let defaults = UserDefaults.standard
+        defaults.set(newTimeout, forKey: KEY_STORE_TIMEOUT)
+        
+    }
+    
+    func getLockingTimeout() -> Int{
+        let defaults = UserDefaults.standard
+        // Default value is 0
+        let storedValue: Int = defaults.integer(forKey: KEY_STORE_TIMEOUT)
+        
+        return storedValue
+    }
     
     
     func lockMachine(){
