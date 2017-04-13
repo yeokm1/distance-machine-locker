@@ -283,6 +283,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     func disconnectExistingConnection(sendNotification: Bool){
         
         setMenuTitleToNotConnected()
+        goingToLock = false
+        
         
         if distanceSensor != nil{
             
