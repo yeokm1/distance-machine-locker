@@ -14,7 +14,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     let DISTANCE_MAXIMUM: Int = 80
     
     let DELAY_BEFORE_NOTIFICATION_AFTER_LOCK: UInt32 = 2
-
+    
     
     let MENU_TITLE_NOT_CONNECTED = "NC"
     let MENU_ITEM_NO_PORTS_FOUND = "No Serial Ports found."
@@ -61,15 +61,14 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     var usbWatcher: USBWatcher!
     
     let locking: Locking = Locking()
-    
-    
+    var timeToLock: Int = 1
     
     override func awakeFromNib() {
-
+        
         statusItem.menu = statusMenu
         
         let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-
+        
         versionItem.title = "Version: " + appVersionString
         
         currentLockingDistance = locking.getLockingDistance()
@@ -81,19 +80,19 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         refreshLockingModeText()
         refreshConnectOnStartText()
         refreshFlashBeforeConnectText()
-    
+        
         serialPortMenu.delegate = self
         distanceMenu.delegate = self
         lockingTimeoutMenu.delegate = self
         
         usbWatcher = USBWatcher(delegate: self)
-
+        
         if connectOnStart{
             DispatchQueue.global(qos: .userInitiated).async {
                 self.autoConnectOnStart()
             }
         }
-    
+        
     }
     
     func refreshFlashBeforeConnectText(){
@@ -131,7 +130,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                 self.autoConnectToItem.title = String(format: self.TEXT_AUTO_CONNECT, self.lastConnectedPort!)
             }
         }
-
+        
     }
     
     func setMenuTitleToNotConnected(){
@@ -139,10 +138,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         DispatchQueue.main.async {
             self.statusItem.title = self.MENU_TITLE_NOT_CONNECTED
         }
-
     }
-    
-    
     
     func distanceMenuItemClicked(item : NSMenuItem){
         
@@ -153,11 +149,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             locking.setLockingDistance(newDistance: distance)
             
         }
-        
-        
     }
     
-
     func menuNeedsUpdate(_ menu: NSMenu) {
         
         if menu.isEqual(serialPortMenu){
@@ -167,13 +160,12 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             print(serialPortsFound)
             
             if serialPortsFound.isEmpty{
-
+                
                 
                 let emptyMenuItem = NSMenuItem(title: MENU_ITEM_NO_PORTS_FOUND, action: nil, keyEquivalent: "")
                 emptyMenuItem.isEnabled = false
                 serialPortMenu.addItem(emptyMenuItem)
             } else {
-            
                 
                 if (distanceSensor != nil){
                     let disconnectMenuItem = NSMenuItem(title: "Disconnect", action: #selector(disconnectMenuItemClicked), keyEquivalent: "")
@@ -181,7 +173,6 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                     disconnectMenuItem.target = self
                     serialPortMenu.addItem(disconnectMenuItem)
                     serialPortMenu.addItem(NSMenuItem.separator())
-                    
                 }
                 
                 let connectedPortName = distanceSensor?.portName
@@ -195,13 +186,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                     } else {
                         portMenuItem.target = self
                     }
-                    
-                
                     serialPortMenu.addItem(portMenuItem)
                 }
-
-                
-                
             }
             
         } else if(menu.isEqual(distanceMenu)){
@@ -223,23 +209,29 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         } else if(menu.isEqual(lockingTimeoutMenu)) {
             lockingTimeoutMenu.removeAllItems()
             
-            for second in stride(from: 5, through: 15, by: 1) {
+            let options = ["0", "1", "3", "5"]
+            
+            for second in options {
                 let timeoutMenuItem = NSMenuItem(title: String(second), action: #selector(timeoutMenuItemClicked), keyEquivalent: "")
                 timeoutMenuItem.target = self
+                if second == String(self.timeToLock) {
+                    timeoutMenuItem.state = NSOnState
+                }
                 
-                
-            lockingTimeoutMenu.addItem(timeoutMenuItem)
+                lockingTimeoutMenu.addItem(timeoutMenuItem)
             }
         }
-
+        
     }
     
     func timeoutMenuItemClicked(item: NSMenuItem) {
-        
+        if let timeout = Int(item.title) {
+            self.timeToLock = timeout
+        }
     }
-
     
-
+    
+    
     func portMenuItemClicked(item: NSMenuItem){
         let portName: String = item.title
         
@@ -249,7 +241,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             self.connectToThisPort(portName: portName)
         }
         
-
+        
     }
     
     
@@ -278,10 +270,10 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             }
             
             showAppNotification(subtitle: "Error in connection with " + portName, informativeText: errorMessage)
-
+            
         }
         
-    
+        
     }
     
     func disconnectExistingConnection(sendNotification: Bool){
@@ -303,7 +295,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             
         }
         
-
+        
     }
     
     //This function should be run from a separate thread
@@ -328,7 +320,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             
         }
         
-
+        
         let connectionStatus = distanceSensor!.startReceiving(callback: distanceReceived, portError: portError)
         
         if connectionStatus.connectionState {
@@ -339,7 +331,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
             distanceSensor = nil
             print("Connect failed")
         }
-
+        
     }
     
     func autoConnectOnStart(){
@@ -355,15 +347,12 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         
     }
     
-
-    
+    var goingToLock: Bool = false
+    var launchLockWindow: CFAbsoluteTime!
     
     func distanceReceived(distance: Int){
-        
         DispatchQueue.main.async {
-            
             let distanceText = String(distance)
-            
             
             if self.lockingMode{
                 self.statusItem.title = distanceText
@@ -371,18 +360,31 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                 let attributedDistanceString = NSAttributedString(
                     string: distanceText,
                     attributes: [NSFontAttributeName: NSFont.systemFont(ofSize: NSFont.systemFontSize()),NSBackgroundColorAttributeName: NSColor.red])
-                
-               self.statusItem.attributedTitle = attributedDistanceString
- 
+                self.statusItem.attributedTitle = attributedDistanceString
             }
-
         }
-        
         if lockingMode && distance >= currentLockingDistance {
-            locking.lockMachine()
+            if self.goingToLock == false {
+                self.goingToLock = true
+                startCounting(start: true)
+            } else {
+                startCounting(start: false)
+            }
+        } else {
+            self.goingToLock = false
         }
     }
     
+    func startCounting(start: Bool) {
+        if start {
+            self.launchLockWindow = CFAbsoluteTimeGetCurrent()
+        } else {
+            let elapsed = CFAbsoluteTimeGetCurrent() - self.launchLockWindow
+            if elapsed >= Double(timeToLock) {
+                locking.lockMachine()
+            }
+        }
+    }
     
     @IBAction func flashBeforeConnectClicked(_ sender: NSMenuItem) {
         flashBeforeConnect = !flashBeforeConnect
@@ -396,14 +398,11 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         refreshConnectOnStartText()
     }
     
-    
     //Referenced from: http://stackoverflow.com/questions/26704852/osx-swift-open-url-in-default-browser
     @IBAction func sourceURLClicked(_ sender: NSMenuItem) {
-        
         if let url = URL(string: URL_SOURCE_CODE) {
             NSWorkspace.shared().open(url)
         }
-        
     }
     
     @IBAction func lockingModeItemClicked(_ sender: NSMenuItem) {
@@ -417,7 +416,6 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     
     
     func showAppNotification(subtitle: String?, informativeText: String?){
-        
         showNotification(title: "Distance Mac Locker", subtitle: subtitle, informativeText: informativeText, contentImage: nil)
     }
     
@@ -438,9 +436,9 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     
     func getConnectOnStart() -> Bool{
         let defaults = UserDefaults.standard
-    
+        
         let storedValue = defaults.bool(forKey: KEY_STORE_CONNECT_ON_START)
-
+        
         return storedValue
     }
     
@@ -462,7 +460,6 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         
     }
     
-    
     public func deviceAdded(_ device: io_object_t) {
         let portNameOfAttached = getPortNameFromDevice(device)
         print("Device added: \(portNameOfAttached)")
@@ -472,16 +469,11 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                 self.connectToThisPort(portName: portNameOfAttached)
             }
         }
-
+        
     }
-    
     
     public func deviceRemoved(_ device: io_object_t) {
         //Not implemented here
     }
-    
-    
-    
-    
     
 }
