@@ -41,7 +41,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     @IBOutlet weak var statusMenu: NSMenu!
     @IBOutlet weak var serialPortMenu: NSMenu!
     @IBOutlet weak var distanceMenu: NSMenu!
-    @IBOutlet weak var lockingTimeoutMenu: NSMenu!
+    @IBOutlet weak var lockingDelayMenu: NSMenu!
     @IBOutlet weak var versionItem: NSMenuItem!
     @IBOutlet weak var lockingModeItem: NSMenuItem!
     @IBOutlet weak var connectOnStartItem: NSMenuItem!
@@ -86,7 +86,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
         
         serialPortMenu.delegate = self
         distanceMenu.delegate = self
-        lockingTimeoutMenu.delegate = self
+        lockingDelayMenu.delegate = self
         
         usbWatcher = USBWatcher(delegate: self)
         
@@ -209,8 +209,8 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                 distanceMenu.addItem(distanceMenuItem)
             }
             
-        } else if(menu.isEqual(lockingTimeoutMenu)) {
-            lockingTimeoutMenu.removeAllItems()
+        } else if(menu.isEqual(lockingDelayMenu)) {
+            lockingDelayMenu.removeAllItems()
             
             let options = ["0", "1", "3", "5"]
             
@@ -221,7 +221,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
                     timeoutMenuItem.state = NSOnState
                 }
                 
-                lockingTimeoutMenu.addItem(timeoutMenuItem)
+                lockingDelayMenu.addItem(timeoutMenuItem)
             }
         }
         

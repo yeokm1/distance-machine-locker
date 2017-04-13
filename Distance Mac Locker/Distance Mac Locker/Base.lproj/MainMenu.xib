@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -20,9 +20,9 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Locking Distance (cm)" id="Tah-TD-4Cd"/>
                 </menuItem>
-                <menuItem title="Locking Timeout (second)" id="yh6-rX-uEp">
+                <menuItem title="Locking Delay (second)" id="yh6-rX-uEp">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Locking Timeout (second)" id="Y90-m9-aAf"/>
+                    <menu key="submenu" title="Locking Delay (second)" id="Y90-m9-aAf"/>
                 </menuItem>
                 <menuItem title="Sensor Serial Port" id="IaX-c5-6WT">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -78,8 +78,8 @@
                 <outlet property="connectOnStartItem" destination="VVa-dL-UMt" id="Cwc-7O-JlB"/>
                 <outlet property="distanceMenu" destination="Tah-TD-4Cd" id="acR-Ju-nrD"/>
                 <outlet property="flashBeforeConnectItem" destination="Xje-hS-BQU" id="vsI-Jf-W6d"/>
+                <outlet property="lockingDelayMenu" destination="Y90-m9-aAf" id="rpp-af-9fN"/>
                 <outlet property="lockingModeItem" destination="qxd-XS-4Xc" id="ChQ-WL-JB8"/>
-                <outlet property="lockingTimeoutMenu" destination="Y90-m9-aAf" id="8so-6e-xae"/>
                 <outlet property="serialPortMenu" destination="Abr-cJ-t9u" id="ssb-du-3mN"/>
                 <outlet property="statusMenu" destination="h3i-7a-rRT" id="x8g-WS-0es"/>
                 <outlet property="versionItem" destination="vvU-Ae-bT4" id="GHW-ff-gGy"/>
