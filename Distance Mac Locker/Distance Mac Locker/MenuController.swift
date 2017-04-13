@@ -62,7 +62,7 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     let locking: Locking = Locking()
     var lockingTimeout: Int = 1
     var goingToLock: Bool = false
-    var launchLockWindow: CFAbsoluteTime!
+    var timeOfLockWindowStart: CFAbsoluteTime!
     
     override func awakeFromNib() {
         
@@ -382,9 +382,9 @@ class MenuController: NSObject, NSMenuDelegate, NSApplicationDelegate, NSUserNot
     
     func startLockingWindow(start: Bool) {
         if start {
-            launchLockWindow = CFAbsoluteTimeGetCurrent()
+            timeOfLockWindowStart = CFAbsoluteTimeGetCurrent()
         } else {
-            let elapsed = CFAbsoluteTimeGetCurrent() - launchLockWindow
+            let elapsed = CFAbsoluteTimeGetCurrent() - timeOfLockWindowStart
             if elapsed >= Double(lockingTimeout) {
                 locking.lockMachine()
             }
