@@ -1,6 +1,8 @@
 # Distance Machine Locker
 
-A system that locks your computer the moment you move away from it. An Arduino-based hardware senses how far are you away from the computer and reports it to a host app on your machine. When a set threshold has been reached, the machine is locked. If the device is forcefully detached from the PC while the app is in operation, the app will lock your machine and reconnect back once the device is attached again.
+A system that locks your computer the moment you move away from it. An Arduino-based hardware senses how far are you away from the computer and reports it to a host app on your machine. When a set threshold has been reached, the machine is locked.
+
+If the device is forcefully detached from the PC while the app is in operation, the app will lock your machine and reconnect back once the device is attached again.
 
 Only Mac OS is supported at this time.
 
@@ -16,11 +18,14 @@ My device deployed under my desk. The purple light coming from the sharp IR sens
 ![Screen](images/front.jpg)
 Front view of device
 
-![Screen](images/back.jpg)
-Back view of device. The OLED screen shows the current distance.
+![Screen](images/updated-design.jpg)
+This is the "production" design that does not have the OLED screen to save costs. The sensor position is shifted to take advantage of the gap in the top cover to give the wire some allowance to bend.
 
 ![Screen](images/app-distance-setting.png)  
 Feature to customise the locking distance threshold.
+
+![Screen](images/app-delay-setting.png)  
+Customise a delay before locking to let you have time to get back into range.
 
 ![Screen](images/app-usb-setting.png)  
 Shows the currently connected USB Serial port as well as other ports if available.
@@ -41,7 +46,7 @@ Shows the currently connected USB Serial port as well as other ports if availabl
 ## Rough steps to quick start
 
 1. Build the hardware, connect it to your Mac
-2. Download and install the Arduino app into `/Applications`
+2. Download and install the Arduino app into `/Applications`. The Arduino app is also used by my app to flash the firmware.
 2. Use Arduino app to flash firmware or flash from command line. Replace path to `distance-machine-locker-arduino.hex` and serial port `/dev/ttyusbmodemX` with the exact ones. `/Applications/Arduino.app/Contents/Java/hardware/tools/avr/bin/avrdude -C /Applications/Arduino.app/Contents/Java/hardware/tools/avr/etc/avrdude.conf -p atmega328p -b 115200 -c arduino -U flash:w:distance-machine-locker-arduino.hex:i -P /dev/ttyusbmodemX`
 3. Download from releases, Unzip and copy `Distance Mac Locker.app` into `/Applications`
 4. Lock the system immediately when screensaver is enabled or display sleeps. System Preferences -> Security and Privacy -> Require password "immediately"
