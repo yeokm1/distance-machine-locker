@@ -88,7 +88,7 @@ class Locking: NSObject {
         }
     }
     
-    //Reference http://stackoverflow.com/questions/1976520/lock-screen-by-api-in-mac-os-x
+    //Reference original Objective-C version from http://stackoverflow.com/a/16368803
     func actualLockCall(){
         let r = IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler")
         
