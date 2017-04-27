@@ -8,9 +8,11 @@ Only Mac OS is supported at this time.
 
 ## Demo media
 
-[![](http://img.youtube.com/vi/mWyIHkdfHz4/0.jpg)](https://www.youtube.com/watch?v=mWyIHkdfHz4)
-
+[![](http://img.youtube.com/vi/mWyIHkdfHz4/0.jpg)](https://www.youtube.com/watch?v=mWyIHkdfHz4)  
 Video of everything in action.
+
+[![](http://img.youtube.com/vi/80zMLssycmM/0.jpg)](https://www.youtube.com/watch?v=80zMLssycmM)  
+Video of the talk I gave on this setup
 
 ![Screen](images/deployed.jpg)
 My device deployed under my desk. The purple light coming from the sharp IR sensor cannot be seen with a naked eye but the camera can.
